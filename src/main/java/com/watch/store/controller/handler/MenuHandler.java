@@ -1,4 +1,4 @@
-package com.watch.store.handler;
+package com.watch.store.controller.handler;
 
 /**
  * An interface representing a generic menu handler for menu-driven applications.

@@ -3,29 +3,28 @@ package com.watch.store;
 import com.watch.store.controller.MenuController;
 import com.watch.store.controller.MenuOptionController;
 import com.watch.store.controller.WatchInputController;
-import com.watch.store.factory.MechanicalWatchFactory;
-import com.watch.store.factory.QuartzWatchFactory;
-import com.watch.store.factory.SolarWatchFactory;
-import com.watch.store.factory.WatchFactory;
-import com.watch.store.handler.AddWatchHandler;
-import com.watch.store.handler.ExitHandler;
-import com.watch.store.handler.MenuHandler;
-import com.watch.store.handler.ShowAllWatchesHandler;
-import com.watch.store.handler.ShowTotalPriceHandler;
-import com.watch.store.handler.SortWatchesByArrivalDateHandler;
-import com.watch.store.handler.SortWatchesByColorHandler;
-import com.watch.store.handler.SortWatchesByPriceHandler;
+import com.watch.store.model.factory.MechanicalWatchFactory;
+import com.watch.store.model.factory.QuartzWatchFactory;
+import com.watch.store.model.factory.SolarWatchFactory;
+import com.watch.store.model.factory.WatchFactory;
+import com.watch.store.controller.handler.AddWatchHandler;
+import com.watch.store.controller.handler.MenuHandler;
+import com.watch.store.controller.handler.ShowAllWatchesHandler;
+import com.watch.store.controller.handler.ShowTotalPriceHandler;
+import com.watch.store.controller.handler.SortWatchesByArrivalDateHandler;
+import com.watch.store.controller.handler.SortWatchesByColorHandler;
+import com.watch.store.controller.handler.SortWatchesByPriceHandler;
 import com.watch.store.repository.WatchRepository;
 import com.watch.store.service.WatchService;
-import com.watch.store.util.WatchValidator;
+import com.watch.store.model.validator.WatchValidator;
 import com.watch.store.view.InputHandler;
-import com.watch.store.view.ViewConsole;
+import com.watch.store.view.View;
 import java.util.List;
 
-public class WatchStoreConsoleApplication {
+public class WatchStoreApplication {
 
     public static void main(String[] args) {
-        ViewConsole view = new ViewConsole();
+        View view = new View();
         InputHandler input = new InputHandler();
         WatchRepository repository = new WatchRepository();
         WatchService service = new WatchService(repository);
@@ -41,7 +40,6 @@ public class WatchStoreConsoleApplication {
             factories);
 
         List<MenuHandler> handlers = List.of(
-            new ExitHandler(),
             new ShowAllWatchesHandler(menuOptionController),
             new ShowTotalPriceHandler(menuOptionController),
             new SortWatchesByArrivalDateHandler(menuOptionController),

@@ -1,8 +1,9 @@
 package com.watch.store.util;
 
-public class Constants {
+public class MessageConstants {
 
     public static final String DATE_FORMAT = "yyyy-MM-dd";
+    public static final String EXIT = "0";
 
     public static final String SOLAR_WATCH_TYPE = "Solar";
     public static final String QUARTZ_WATCH_TYPE = "Quartz";

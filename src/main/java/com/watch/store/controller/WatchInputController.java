@@ -1,18 +1,18 @@
 package com.watch.store.controller;
 
-import static com.watch.store.util.Constants.DATE_FORMAT;
-import static com.watch.store.util.Constants.ENTER_ARRIVAL_DATE;
-import static com.watch.store.util.Constants.ENTER_COLOR;
-import static com.watch.store.util.Constants.ENTER_COMPANY;
-import static com.watch.store.util.Constants.ENTER_MOVEMENT;
-import static com.watch.store.util.Constants.ENTER_PRICE;
-import static com.watch.store.util.Constants.ENTER_SOLAR_PANEL;
+import static com.watch.store.util.MessageConstants.DATE_FORMAT;
+import static com.watch.store.util.MessageConstants.ENTER_ARRIVAL_DATE;
+import static com.watch.store.util.MessageConstants.ENTER_COLOR;
+import static com.watch.store.util.MessageConstants.ENTER_COMPANY;
+import static com.watch.store.util.MessageConstants.ENTER_MOVEMENT;
+import static com.watch.store.util.MessageConstants.ENTER_PRICE;
+import static com.watch.store.util.MessageConstants.ENTER_SOLAR_PANEL;
 
 import com.watch.store.model.Color;
 import com.watch.store.model.Company;
-import com.watch.store.util.WatchValidator;
+import com.watch.store.model.validator.WatchValidator;
 import com.watch.store.view.InputHandler;
-import com.watch.store.view.ViewConsole;
+import com.watch.store.view.View;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,10 +26,10 @@ import java.util.stream.Collectors;
 public class WatchInputController {
 
     private final WatchValidator validator;
-    private final ViewConsole view;
+    private final View view;
     private final InputHandler input;
 
-    public WatchInputController(WatchValidator validator, ViewConsole view, InputHandler input) {
+    public WatchInputController(WatchValidator validator, View view, InputHandler input) {
         this.validator = validator;
         this.view = view;
         this.input = input;

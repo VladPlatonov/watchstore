@@ -1,17 +1,16 @@
-package com.watch.store.util;
+package com.watch.store.model.validator;
 
-import static com.watch.store.util.Constants.DATE_FORMAT;
-import static com.watch.store.util.Constants.INVALID_INPUT_ARRIVAL_DATE;
-import static com.watch.store.util.Constants.INVALID_INPUT_COLOR;
-import static com.watch.store.util.Constants.INVALID_INPUT_COMPANY;
-import static com.watch.store.util.Constants.INVALID_INPUT_DATE_FORMAT;
-import static com.watch.store.util.Constants.INVALID_INPUT_PRICE_NEGATIVE;
+import static com.watch.store.util.MessageConstants.DATE_FORMAT;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_ARRIVAL_DATE;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_COLOR;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_COMPANY;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_DATE_FORMAT;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_PRICE_NEGATIVE;
 
-import com.watch.store.exception.DateFutureException;
-import com.watch.store.exception.InvalidPriceNegativeException;
 import com.watch.store.model.Color;
 import com.watch.store.model.Company;
-import com.watch.store.view.ViewConsole;
+import com.watch.store.view.View;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -22,9 +21,9 @@ import java.util.Optional;
  */
 public class WatchValidator {
 
-    private final ViewConsole view;
+    private final View view;
 
-    public WatchValidator(ViewConsole view) {
+    public WatchValidator(View view) {
         this.view = view;
     }
 
@@ -36,18 +35,18 @@ public class WatchValidator {
      * @return an Optional containing the parsed long value if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<Long> isValidPrice(String value) {
+    public Optional<BigDecimal> isValidPrice(String value) {
         try {
-            long price = Long.parseLong(value);
-            if (price < 0) {
-                throw new InvalidPriceNegativeException(INVALID_INPUT_PRICE_NEGATIVE);
+            BigDecimal price = BigDecimal.valueOf(Double.parseDouble(value));
+            if (price.compareTo(BigDecimal.ZERO) < 0) {
+                view.printErrorMessage(INVALID_INPUT_PRICE_NEGATIVE);
+                return Optional.empty();
             }
             return Optional.of(price);
-
-        } catch (NumberFormatException | InvalidPriceNegativeException e) {
+        } catch (NumberFormatException e) {
             view.printErrorMessage(e.getMessage());
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
     /**
@@ -61,11 +60,10 @@ public class WatchValidator {
     public Optional<Color> isValidColor(String value) {
         try {
             return Optional.of(Color.valueOf(value.toUpperCase()));
-
         } catch (IllegalArgumentException e) {
             view.printErrorMessage(INVALID_INPUT_COLOR);
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
     /**
@@ -79,11 +77,10 @@ public class WatchValidator {
     public Optional<Company> isValidCompany(String value) {
         try {
             return Optional.of(Company.valueOf(value.toUpperCase()));
-
         } catch (IllegalArgumentException e) {
             view.printErrorMessage(INVALID_INPUT_COMPANY);
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
     /**
@@ -96,20 +93,16 @@ public class WatchValidator {
      */
     public Optional<LocalDate> isValidDate(String value) {
         try {
-            LocalDate parsedDate = LocalDate.parse(value,
-                DateTimeFormatter.ofPattern(DATE_FORMAT));
+            LocalDate parsedDate = LocalDate.parse(value, DateTimeFormatter.ofPattern(DATE_FORMAT));
+
             if (parsedDate.isAfter(LocalDate.now())) {
-                throw new DateFutureException(INVALID_INPUT_ARRIVAL_DATE);
+                view.printErrorMessage(INVALID_INPUT_ARRIVAL_DATE);
+                return Optional.empty();
             }
             return Optional.of(parsedDate);
-
         } catch (DateTimeParseException e) {
             view.printErrorMessage(INVALID_INPUT_DATE_FORMAT);
-            return Optional.empty();
-
-        } catch (DateFutureException e) {
-            view.printErrorMessage(e.getMessage());
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 }

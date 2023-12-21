@@ -1,12 +1,12 @@
 package com.watch.store.controller;
 
-import static com.watch.store.util.Constants.ENTER_WATCH_TYPE;
-import static com.watch.store.util.Constants.INVALID_INPUT_WATCH_TYPE;
+import static com.watch.store.util.MessageConstants.ENTER_WATCH_TYPE;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_WATCH_TYPE;
 
-import com.watch.store.factory.WatchFactory;
+import com.watch.store.model.factory.WatchFactory;
 import com.watch.store.service.WatchService;
 import com.watch.store.view.InputHandler;
-import com.watch.store.view.ViewConsole;
+import com.watch.store.view.View;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 public class MenuOptionController {
 
     private final WatchService service;
-    private final ViewConsole view;
+    private final View view;
     private final InputHandler input;
     private final List<WatchFactory> factories;
 
-    public MenuOptionController(WatchService service, ViewConsole view, InputHandler input,
+    public MenuOptionController(WatchService service, View view, InputHandler input,
         List<WatchFactory> factories) {
         this.service = service;
         this.view = view;

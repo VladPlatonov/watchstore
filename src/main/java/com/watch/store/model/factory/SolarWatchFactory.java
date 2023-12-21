@@ -1,28 +1,28 @@
-package com.watch.store.factory;
+package com.watch.store.model.factory;
 
-import static com.watch.store.util.Constants.MECHANICAL_WATCH_TYPE;
+import static com.watch.store.util.MessageConstants.SOLAR_WATCH_TYPE;
 
 import com.watch.store.controller.WatchInputController;
-import com.watch.store.model.MechanicalWatch;
+import com.watch.store.model.SolarWatch;
 import com.watch.store.model.Watch;
 
-public class MechanicalWatchFactory implements WatchFactory {
+public class SolarWatchFactory implements WatchFactory {
 
     private final WatchInputController controller;
 
-    public MechanicalWatchFactory(WatchInputController controller) {
+    public SolarWatchFactory(WatchInputController controller) {
         this.controller = controller;
     }
 
     @Override
     public String getWatchType() {
-        return MECHANICAL_WATCH_TYPE;
+        return SOLAR_WATCH_TYPE;
     }
 
     @Override
     public Watch createWatch() {
-        return MechanicalWatch.builder()
-            .movement(controller.getMovement())
+        return SolarWatch.builder()
+            .solarPanel(controller.getSolarPanel())
             .company(controller.getCompany())
             .price(controller.getPrice())
             .color(controller.getColor())

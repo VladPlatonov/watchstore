@@ -1,6 +1,6 @@
 package com.watch.store.view;
 
-public class ViewConsole {
+public class View {
 
     public void printMessage(String message) {
         System.out.println(message);

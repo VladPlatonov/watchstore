@@ -1,20 +1,22 @@
 package com.watch.store.controller;
 
-import static com.watch.store.util.Constants.INVALID_INPUT_MENU_OPTION;
-import static com.watch.store.util.Constants.INVALID_INPUT_NUMBER;
+import static com.watch.store.util.MessageConstants.EXIT;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_MENU_OPTION;
+import static com.watch.store.util.MessageConstants.INVALID_INPUT_NUMBER;
+import static com.watch.store.util.MessageConstants.MENU_OPTION_EXIT;
 
-import com.watch.store.handler.MenuHandler;
+import com.watch.store.controller.handler.MenuHandler;
 import com.watch.store.model.Color;
 import com.watch.store.model.MechanicalWatch;
 import com.watch.store.model.QuartzWatch;
 import com.watch.store.model.SolarWatch;
 import com.watch.store.service.WatchService;
 import com.watch.store.view.InputHandler;
-import com.watch.store.view.ViewConsole;
+import com.watch.store.view.View;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -27,10 +29,10 @@ public class MenuController {
 
     private final List<MenuHandler> menuHandlers;
     private final WatchService service;
-    private final ViewConsole view;
+    private final View view;
     private final InputHandler input;
 
-    public MenuController(List<MenuHandler> menuHandlers, WatchService service, ViewConsole view,
+    public MenuController(List<MenuHandler> menuHandlers, WatchService service, View view,
         InputHandler input) {
         this.menuHandlers = menuHandlers;
         this.service = service;
@@ -47,9 +49,10 @@ public class MenuController {
         processUserInput();
     }
 
+
     private void processUserInput() {
         Stream.generate(input::readInput)
-            .takeWhile(Objects::nonNull)
+            .takeWhile(input -> !input.equals(EXIT))
             .forEach(input -> {
                 validMenuOption(input);
                 printMenu();
@@ -59,12 +62,11 @@ public class MenuController {
     private void validMenuOption(String input) {
         try {
             int choice = Integer.parseInt(input);
-            if (choice < 0 || choice >= menuHandlers.size()) {
+            if (choice < 0 || choice >= menuHandlers.size() + 1) {
                 view.printErrorMessage(INVALID_INPUT_MENU_OPTION);
             } else {
-                menuHandlers.get(choice).handle();
+                menuHandlers.get(choice-1).handle();
             }
-
         } catch (NumberFormatException e) {
             view.printErrorMessage(INVALID_INPUT_NUMBER);
         }
@@ -96,9 +98,9 @@ public class MenuController {
     }
 
     private void printMenu() {
-        menuHandlers.stream()
+        view.printMessage(menuHandlers.stream()
             .map(MenuHandler::getMenuDescription)
-            .forEach(view::printMessage);
+            .collect(Collectors.joining("\n", "Menu\n", "\n" + MENU_OPTION_EXIT)));
     }
 
 }

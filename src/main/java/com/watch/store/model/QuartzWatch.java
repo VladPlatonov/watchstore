@@ -4,6 +4,18 @@ public class QuartzWatch extends Watch {
 
     private final String movement;
 
+    @Override
+    public String toString() {
+        return "QuartzWatch{" +
+            "id='" + getId() + '\'' +
+            ", company='" + getCompany() + '\'' +
+            ", movement='" + movement + '\'' +
+            ", price=" + getPrice() +
+            ", color='" + getColor() + '\'' +
+            ", arrivalDate='" + getArrivalDate() + '\'' +
+            '}';
+    }
+
     private QuartzWatch(QuartzWatchBuilder builder) {
         super(builder);
         this.movement = builder.movement;
@@ -21,18 +33,6 @@ public class QuartzWatch extends Watch {
                 return this;
             }
         };
-    }
-
-    @Override
-    public String toString() {
-        return "QuartzWatch{" +
-            "id='" + getId() + '\'' +
-            ", company='" + getCompany() + '\'' +
-            ", movement='" + movement + '\'' +
-            ", price=" + getPrice() +
-            ", color='" + getColor() + '\'' +
-            ", arrivalDate='" + getArrivalDate() + '\'' +
-            '}';
     }
 
     public static class QuartzWatchBuilder extends Builder<QuartzWatchBuilder> {

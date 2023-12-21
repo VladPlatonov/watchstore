@@ -1,27 +1,27 @@
-package com.watch.store.factory;
+package com.watch.store.model.factory;
 
-import static com.watch.store.util.Constants.QUARTZ_WATCH_TYPE;
+import static com.watch.store.util.MessageConstants.MECHANICAL_WATCH_TYPE;
 
 import com.watch.store.controller.WatchInputController;
-import com.watch.store.model.QuartzWatch;
+import com.watch.store.model.MechanicalWatch;
 import com.watch.store.model.Watch;
 
-public class QuartzWatchFactory implements WatchFactory {
+public class MechanicalWatchFactory implements WatchFactory {
 
     private final WatchInputController controller;
 
-    public QuartzWatchFactory(WatchInputController controller) {
+    public MechanicalWatchFactory(WatchInputController controller) {
         this.controller = controller;
     }
 
     @Override
     public String getWatchType() {
-        return QUARTZ_WATCH_TYPE;
+        return MECHANICAL_WATCH_TYPE;
     }
 
     @Override
     public Watch createWatch() {
-        return QuartzWatch.builder()
+        return MechanicalWatch.builder()
             .movement(controller.getMovement())
             .company(controller.getCompany())
             .price(controller.getPrice())

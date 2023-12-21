@@ -4,6 +4,18 @@ public class MechanicalWatch extends Watch {
 
     private final String movement;
 
+    @Override
+    public String toString() {
+        return "MechanicalWatch{" +
+            "id='" + getId() + '\'' +
+            ", company='" + getCompany() + '\'' +
+            ", movement='" + movement + '\'' +
+            ", price=" + getPrice() +
+            ", color='" + getColor() + '\'' +
+            ", arrivalDate='" + getArrivalDate() + '\'' +
+            '}';
+    }
+
     private MechanicalWatch(MechanicalWatchBuilder builder) {
         super(builder);
         this.movement = builder.movement;
@@ -23,17 +35,6 @@ public class MechanicalWatch extends Watch {
         };
     }
 
-    @Override
-    public String toString() {
-        return "MechanicalWatch{" +
-            "id='" + getId() + '\'' +
-            ", company='" + getCompany() + '\'' +
-            ", movement='" + movement + '\'' +
-            ", price=" + getPrice() +
-            ", color='" + getColor() + '\'' +
-            ", arrivalDate='" + getArrivalDate() + '\'' +
-            '}';
-    }
 
     public static class MechanicalWatchBuilder extends Builder<MechanicalWatchBuilder> {
 

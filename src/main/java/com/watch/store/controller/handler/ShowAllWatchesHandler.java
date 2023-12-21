@@ -1,6 +1,6 @@
-package com.watch.store.handler;
+package com.watch.store.controller.handler;
 
-import static com.watch.store.util.Constants.MENU_OPTION_SHOW_ALL_WATCHES;
+import static com.watch.store.util.MessageConstants.MENU_OPTION_SHOW_ALL_WATCHES;
 
 import com.watch.store.controller.MenuOptionController;
 

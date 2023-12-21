@@ -1,28 +1,28 @@
-package com.watch.store.factory;
+package com.watch.store.model.factory;
 
-import static com.watch.store.util.Constants.SOLAR_WATCH_TYPE;
+import static com.watch.store.util.MessageConstants.QUARTZ_WATCH_TYPE;
 
 import com.watch.store.controller.WatchInputController;
-import com.watch.store.model.SolarWatch;
+import com.watch.store.model.QuartzWatch;
 import com.watch.store.model.Watch;
 
-public class SolarWatchFactory implements WatchFactory {
+public class QuartzWatchFactory implements WatchFactory {
 
     private final WatchInputController controller;
 
-    public SolarWatchFactory(WatchInputController controller) {
+    public QuartzWatchFactory(WatchInputController controller) {
         this.controller = controller;
     }
 
     @Override
     public String getWatchType() {
-        return SOLAR_WATCH_TYPE;
+        return QUARTZ_WATCH_TYPE;
     }
 
     @Override
     public Watch createWatch() {
-        return SolarWatch.builder()
-            .solarPanel(controller.getSolarPanel())
+        return QuartzWatch.builder()
+            .movement(controller.getMovement())
             .company(controller.getCompany())
             .price(controller.getPrice())
             .color(controller.getColor())

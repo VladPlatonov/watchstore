@@ -8,12 +8,11 @@ import java.time.LocalDate;
  */
 public abstract class Watch {
 
+    private Long id;
     private final BigDecimal price;
     private final Color color;
     private final LocalDate arrivalDate;
     private final Company company;
-    private Long id;
-
 
     public Watch(Builder<?> builder) {
         this.id = builder.id;
