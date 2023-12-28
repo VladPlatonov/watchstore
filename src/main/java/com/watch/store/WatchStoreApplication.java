@@ -28,12 +28,12 @@ public class WatchStoreApplication {
         InputHandler input = new InputHandler();
         WatchRepository repository = new WatchRepository();
         WatchService service = new WatchService(repository);
-        RetrieveDataHandler validator = new RetrieveDataHandler(view);
+        RetrieveDataHandler retrieveDataHandler = new RetrieveDataHandler(view);
 
         List<WatchFactory> factories = List.of(
-            new MechanicalWatchFactory(new WatchInputController(validator, view, input)),
-            new QuartzWatchFactory(new WatchInputController(validator, view, input)),
-            new SolarWatchFactory(new WatchInputController(validator, view, input))
+            new MechanicalWatchFactory(new WatchInputController(retrieveDataHandler, view, input)),
+            new QuartzWatchFactory(new WatchInputController(retrieveDataHandler, view, input)),
+            new SolarWatchFactory(new WatchInputController(retrieveDataHandler, view, input))
         );
 
         MenuOptionController menuOptionController = new MenuOptionController(service, view, input,

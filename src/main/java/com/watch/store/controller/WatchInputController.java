@@ -25,12 +25,12 @@ import java.util.stream.Collectors;
  */
 public class WatchInputController {
 
-    private final RetrieveDataHandler validator;
+    private final RetrieveDataHandler handler;
     private final View view;
     private final InputHandler input;
 
-    public WatchInputController(RetrieveDataHandler validator, View view, InputHandler input) {
-        this.validator = validator;
+    public WatchInputController(RetrieveDataHandler handler, View view, InputHandler input) {
+        this.handler = handler;
         this.view = view;
         this.input = input;
     }
@@ -68,7 +68,7 @@ public class WatchInputController {
             view.printMessage(ENTER_PRICE);
             priceStr = input.readInput();
         }
-        while (validator.RetrievePrice(priceStr).isEmpty());
+        while (handler.RetrievePrice(priceStr).isEmpty());
 
         return BigDecimal.valueOf(Double.parseDouble(priceStr));
     }
@@ -87,7 +87,7 @@ public class WatchInputController {
                     .collect(Collectors.joining(", ", ENTER_COLOR + " (", "): ")));
             color = input.readInput();
         }
-        while (validator.RetrieveColor(color).isEmpty());
+        while (handler.RetrieveColor(color).isEmpty());
 
         return Color.valueOf(color.toUpperCase());
     }
@@ -106,7 +106,7 @@ public class WatchInputController {
                     .collect(Collectors.joining(", ", ENTER_COMPANY + " (", "): ")));
             company = input.readInput();
         }
-        while (validator.RetrieveCompany(company).isEmpty());
+        while (handler.RetrieveCompany(company).isEmpty());
 
         return Company.valueOf(company.toUpperCase());
     }
@@ -123,7 +123,7 @@ public class WatchInputController {
             view.printMessage(ENTER_ARRIVAL_DATE);
             valueDate = input.readInput();
         }
-        while (validator.RetrieveDate(valueDate).isEmpty());
+        while (handler.RetrieveDate(valueDate).isEmpty());
 
         return LocalDate.parse(valueDate, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
