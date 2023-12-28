@@ -1,4 +1,4 @@
-package com.watch.store.model.factory;
+package com.watch.store.controller.factory;
 
 import com.watch.store.model.Watch;
 

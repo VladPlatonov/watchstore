@@ -3,7 +3,7 @@ package com.watch.store.controller;
 import static com.watch.store.util.MessageConstants.ENTER_WATCH_TYPE;
 import static com.watch.store.util.MessageConstants.INVALID_INPUT_WATCH_TYPE;
 
-import com.watch.store.model.factory.WatchFactory;
+import com.watch.store.controller.factory.WatchFactory;
 import com.watch.store.service.WatchService;
 import com.watch.store.view.InputHandler;
 import com.watch.store.view.View;
