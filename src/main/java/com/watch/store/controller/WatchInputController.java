@@ -68,7 +68,7 @@ public class WatchInputController {
             view.printMessage(ENTER_PRICE);
             priceStr = input.readInput();
         }
-        while (handler.RetrievePrice(priceStr).isEmpty());
+        while (handler.retrievePrice(priceStr).isEmpty());
 
         return BigDecimal.valueOf(Double.parseDouble(priceStr));
     }
@@ -87,7 +87,7 @@ public class WatchInputController {
                     .collect(Collectors.joining(", ", ENTER_COLOR + " (", "): ")));
             color = input.readInput();
         }
-        while (handler.RetrieveColor(color).isEmpty());
+        while (handler.retrieveColor(color).isEmpty());
 
         return Color.valueOf(color.toUpperCase());
     }
@@ -106,7 +106,7 @@ public class WatchInputController {
                     .collect(Collectors.joining(", ", ENTER_COMPANY + " (", "): ")));
             company = input.readInput();
         }
-        while (handler.RetrieveCompany(company).isEmpty());
+        while (handler.retrieveCompany(company).isEmpty());
 
         return Company.valueOf(company.toUpperCase());
     }
@@ -123,7 +123,7 @@ public class WatchInputController {
             view.printMessage(ENTER_ARRIVAL_DATE);
             valueDate = input.readInput();
         }
-        while (handler.RetrieveDate(valueDate).isEmpty());
+        while (handler.retrieveDate(valueDate).isEmpty());
 
         return LocalDate.parse(valueDate, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }

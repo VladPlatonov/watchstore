@@ -30,7 +30,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnEmptyOptional_whenPriceIsInvalid() {
-        Optional<BigDecimal> result = handler.RetrievePrice("testInput");
+        Optional<BigDecimal> result = handler.retrievePrice("testInput");
 
         verify(view).printErrorMessage(anyString());
         assertTrue(result.isEmpty());
@@ -38,7 +38,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnValidPrice_whenPriceIsValid() {
-        Optional<BigDecimal> result = handler.RetrievePrice("300");
+        Optional<BigDecimal> result = handler.retrievePrice("300");
 
         verify(view, times(0)).printErrorMessage(anyString());
         assertEquals(BigDecimal.valueOf(300.0), result.orElseThrow());
@@ -46,7 +46,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnEmptyOptional_whenColorIsInvalid() {
-        Optional<Color> result = handler.RetrieveColor("testInput");
+        Optional<Color> result = handler.retrieveColor("testInput");
 
         verify(view).printErrorMessage(INVALID_INPUT_COLOR);
         assertTrue(result.isEmpty());
@@ -54,7 +54,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnValidColor_whenColorIsValid() {
-        Optional<Color> result = handler.RetrieveColor("blue");
+        Optional<Color> result = handler.retrieveColor("blue");
 
         verify(view, times(0)).printErrorMessage(anyString());
         assertEquals(Color.BLUE, result.orElseThrow());
@@ -62,7 +62,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnEmptyOptional_whenCompanyIsInvalid() {
-        Optional<Company> result = handler.RetrieveCompany("testInput");
+        Optional<Company> result = handler.retrieveCompany("testInput");
 
         verify(view).printErrorMessage(INVALID_INPUT_COMPANY);
         assertTrue(result.isEmpty());
@@ -70,7 +70,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnValidCompany_whenCompanyIsValid() {
-        Optional<Company> result = handler.RetrieveCompany("ROLEX");
+        Optional<Company> result = handler.retrieveCompany("ROLEX");
 
         verify(view, times(0)).printErrorMessage(anyString());
         assertEquals(Company.ROLEX, result.orElseThrow());
@@ -78,7 +78,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnEmptyOptional_whenDateIsInvalid() {
-        Optional<LocalDate> result = handler.RetrieveDate("testInput");
+        Optional<LocalDate> result = handler.retrieveDate("testInput");
 
         verify(view).printErrorMessage(anyString());
         assertTrue(result.isEmpty());
@@ -86,7 +86,7 @@ class RetrieveDataHandlerTest {
 
     @Test
     void shouldReturnValidDate_whenDateIsValid() {
-        Optional<LocalDate> result = handler.RetrieveDate("2022-01-01");
+        Optional<LocalDate> result = handler.retrieveDate("2022-01-01");
 
         verify(view, times(0)).printErrorMessage(anyString());
         assertEquals(LocalDate.parse("2022-01-01"), result.orElseThrow());

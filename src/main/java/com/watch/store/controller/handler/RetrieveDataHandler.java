@@ -35,7 +35,7 @@ public class RetrieveDataHandler {
      * @return an Optional containing the parsed long value if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<BigDecimal> RetrievePrice(String value) {
+    public Optional<BigDecimal> retrievePrice(String value) {
         try {
             BigDecimal price = BigDecimal.valueOf(Double.parseDouble(value));
             if (price.compareTo(BigDecimal.ZERO) < 0) {
@@ -57,7 +57,7 @@ public class RetrieveDataHandler {
      * @return an Optional containing the Color enum constant if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<Color> RetrieveColor(String value) {
+    public Optional<Color> retrieveColor(String value) {
         try {
             return Optional.of(Color.valueOf(value.toUpperCase()));
         } catch (IllegalArgumentException e) {
@@ -74,7 +74,7 @@ public class RetrieveDataHandler {
      * @return an Optional containing the Company enum constant if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<Company> RetrieveCompany(String value) {
+    public Optional<Company> retrieveCompany(String value) {
         try {
             return Optional.of(Company.valueOf(value.toUpperCase()));
         } catch (IllegalArgumentException e) {
@@ -91,7 +91,7 @@ public class RetrieveDataHandler {
      * @return an Optional containing the parsed LocalDate value if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<LocalDate> RetrieveDate(String value) {
+    public Optional<LocalDate> retrieveDate(String value) {
         try {
             LocalDate parsedDate = LocalDate.parse(value, DateTimeFormatter.ofPattern(DATE_FORMAT));
 

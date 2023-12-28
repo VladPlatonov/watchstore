@@ -35,9 +35,7 @@ public abstract class HashMapRepository<T> implements InMemoryRepository<T> {
 
     @Override
     public List<T> findAll() {
-        List<T> list = new ArrayList<>();
-        entities.forEach((k, v) -> list.add(v));
-        return list;
+        return List.copyOf(entities.values());
     }
 
     @Override
