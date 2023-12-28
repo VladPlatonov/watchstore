@@ -7,16 +7,16 @@ import com.watch.store.controller.factory.MechanicalWatchFactory;
 import com.watch.store.controller.factory.QuartzWatchFactory;
 import com.watch.store.controller.factory.SolarWatchFactory;
 import com.watch.store.controller.factory.WatchFactory;
-import com.watch.store.controller.handler.AddWatchHandler;
-import com.watch.store.controller.handler.MenuHandler;
-import com.watch.store.controller.handler.ShowAllWatchesHandler;
-import com.watch.store.controller.handler.ShowTotalPriceHandler;
-import com.watch.store.controller.handler.SortWatchesByArrivalDateHandler;
-import com.watch.store.controller.handler.SortWatchesByColorHandler;
-import com.watch.store.controller.handler.SortWatchesByPriceHandler;
+import com.watch.store.controller.handler.menu.AddWatchHandler;
+import com.watch.store.controller.handler.menu.MenuHandler;
+import com.watch.store.controller.handler.menu.ShowAllWatchesHandler;
+import com.watch.store.controller.handler.menu.ShowTotalPriceHandler;
+import com.watch.store.controller.handler.menu.SortWatchesByArrivalDateHandler;
+import com.watch.store.controller.handler.menu.SortWatchesByColorHandler;
+import com.watch.store.controller.handler.menu.SortWatchesByPriceHandler;
+import com.watch.store.controller.handler.RetrieveDataHandler;
 import com.watch.store.repository.WatchRepository;
 import com.watch.store.service.WatchService;
-import com.watch.store.model.validator.WatchValidator;
 import com.watch.store.view.InputHandler;
 import com.watch.store.view.View;
 import java.util.List;
@@ -28,7 +28,7 @@ public class WatchStoreApplication {
         InputHandler input = new InputHandler();
         WatchRepository repository = new WatchRepository();
         WatchService service = new WatchService(repository);
-        WatchValidator validator = new WatchValidator(view);
+        RetrieveDataHandler validator = new RetrieveDataHandler(view);
 
         List<WatchFactory> factories = List.of(
             new MechanicalWatchFactory(new WatchInputController(validator, view, input)),

@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Class that contains methods for menu options.
+ */
 public class MenuOptionController {
 
     private final WatchService service;

@@ -1,4 +1,4 @@
-package com.watch.store.model.validator;
+package com.watch.store.controller.handler;
 
 import static com.watch.store.util.MessageConstants.DATE_FORMAT;
 import static com.watch.store.util.MessageConstants.INVALID_INPUT_ARRIVAL_DATE;
@@ -17,25 +17,25 @@ import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 /**
- * A utility class responsible for validating input values related to watch properties.
+ * A  class responsible for handling input values related to watch properties.
  */
-public class WatchValidator {
+public class RetrieveDataHandler {
 
     private final View view;
 
-    public WatchValidator(View view) {
+    public RetrieveDataHandler(View view) {
         this.view = view;
     }
 
     /**
-     * Validates the input price value and returns an Optional containing the parsed long value if
+     * Retrieves the input price value and returns an Optional containing the parsed long value if
      * the input is valid.
      *
      * @param value the input price value as a String
      * @return an Optional containing the parsed long value if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<BigDecimal> isValidPrice(String value) {
+    public Optional<BigDecimal> RetrievePrice(String value) {
         try {
             BigDecimal price = BigDecimal.valueOf(Double.parseDouble(value));
             if (price.compareTo(BigDecimal.ZERO) < 0) {
@@ -50,14 +50,14 @@ public class WatchValidator {
     }
 
     /**
-     * Validates the input color value and returns an Optional containing the Color enum constant if
+     * Retrieves the input color value and returns an Optional containing the Color enum constant if
      * the input is valid.
      *
      * @param value the input color value as a String
      * @return an Optional containing the Color enum constant if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<Color> isValidColor(String value) {
+    public Optional<Color> RetrieveColor(String value) {
         try {
             return Optional.of(Color.valueOf(value.toUpperCase()));
         } catch (IllegalArgumentException e) {
@@ -67,14 +67,14 @@ public class WatchValidator {
     }
 
     /**
-     * Validates the input company value and returns an Optional containing the Company enum
+     * Retrieves the input company value and returns an Optional containing the Company enum
      * constant if the input is valid.
      *
      * @param value the input company value as a String
      * @return an Optional containing the Company enum constant if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<Company> isValidCompany(String value) {
+    public Optional<Company> RetrieveCompany(String value) {
         try {
             return Optional.of(Company.valueOf(value.toUpperCase()));
         } catch (IllegalArgumentException e) {
@@ -84,14 +84,14 @@ public class WatchValidator {
     }
 
     /**
-     * Validates the input date value and returns an Optional containing the parsed LocalDate value
+     * Retrieves the input date value and returns an Optional containing the parsed LocalDate value
      * if the input is valid.
      *
      * @param value the input date value as a String
      * @return an Optional containing the parsed LocalDate value if the input is valid, otherwise an
      * empty Optional
      */
-    public Optional<LocalDate> isValidDate(String value) {
+    public Optional<LocalDate> RetrieveDate(String value) {
         try {
             LocalDate parsedDate = LocalDate.parse(value, DateTimeFormatter.ofPattern(DATE_FORMAT));
 
@@ -105,4 +105,5 @@ public class WatchValidator {
         }
         return Optional.empty();
     }
+
 }

@@ -68,4 +68,5 @@ class WatchRepositoryTest {
         assertTrue(watches.contains(watch1));
         assertTrue(watches.contains(watch2));
     }
+
 }

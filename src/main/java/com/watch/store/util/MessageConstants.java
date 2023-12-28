@@ -33,4 +33,5 @@ public class MessageConstants {
     public static final String ENTER_COMPANY = "Please enter watch company";
     public static final String ENTER_ARRIVAL_DATE = "Please enter watch arrival date (yyyy-MM-dd): ";
     public static final String ENTER_WATCH_TYPE = "Add watch\nPlease enter watch type";
+
 }

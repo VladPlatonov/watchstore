@@ -35,11 +35,14 @@ public abstract class HashMapRepository<T> implements InMemoryRepository<T> {
 
     @Override
     public List<T> findAll() {
-        return new ArrayList<>(entities.values());
+        List<T> list = new ArrayList<>();
+        entities.forEach((k, v) -> list.add(v));
+        return list;
     }
 
     @Override
     public void deleteById(Long id) {
         entities.remove(id);
     }
+
 }

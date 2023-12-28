@@ -4,6 +4,11 @@ public class SolarWatch extends Watch {
 
     private final String solarPanel;
 
+    private SolarWatch(SolarWatchBuilder builder) {
+        super(builder);
+        this.solarPanel = builder.solarPanel;
+    }
+
     @Override
     public String toString() {
         return "SolarWatch{" +
@@ -14,12 +19,6 @@ public class SolarWatch extends Watch {
             ", color='" + getColor() + '\'' +
             ", arrivalDate='" + getArrivalDate() + '\'' +
             '}';
-    }
-
-
-    private SolarWatch(SolarWatchBuilder builder) {
-        super(builder);
-        this.solarPanel = builder.solarPanel;
     }
 
     public static SolarWatchBuilder builder() {
@@ -55,4 +54,5 @@ public class SolarWatch extends Watch {
             return this;
         }
     }
+
 }

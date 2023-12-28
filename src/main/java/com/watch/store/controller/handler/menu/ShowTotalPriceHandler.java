@@ -1,4 +1,4 @@
-package com.watch.store.controller.handler;
+package com.watch.store.controller.handler.menu;
 
 import static com.watch.store.util.MessageConstants.MENU_OPTION_SHOW_TOTAL_PRICE;
 
@@ -24,4 +24,5 @@ public class ShowTotalPriceHandler implements MenuHandler {
     public String getMenuDescription() {
         return MENU_OPTION_SHOW_TOTAL_PRICE;
     }
+
 }

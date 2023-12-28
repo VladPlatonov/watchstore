@@ -29,4 +29,5 @@ public class QuartzWatchFactory implements WatchFactory {
             .arrivalDate(controller.getDate())
             .build();
     }
+
 }

@@ -12,4 +12,5 @@ public interface InMemoryRepository<T> {
     List<T> findAll();
 
     void deleteById(Long id);
+
 }

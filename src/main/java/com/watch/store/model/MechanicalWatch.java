@@ -4,6 +4,11 @@ public class MechanicalWatch extends Watch {
 
     private final String movement;
 
+    private MechanicalWatch(MechanicalWatchBuilder builder) {
+        super(builder);
+        this.movement = builder.movement;
+    }
+
     @Override
     public String toString() {
         return "MechanicalWatch{" +
@@ -14,11 +19,6 @@ public class MechanicalWatch extends Watch {
             ", color='" + getColor() + '\'' +
             ", arrivalDate='" + getArrivalDate() + '\'' +
             '}';
-    }
-
-    private MechanicalWatch(MechanicalWatchBuilder builder) {
-        super(builder);
-        this.movement = builder.movement;
     }
 
     public static MechanicalWatchBuilder builder() {
@@ -34,7 +34,6 @@ public class MechanicalWatch extends Watch {
             }
         };
     }
-
 
     public static class MechanicalWatchBuilder extends Builder<MechanicalWatchBuilder> {
 
@@ -55,5 +54,6 @@ public class MechanicalWatch extends Watch {
             return this;
         }
     }
+
 }
 

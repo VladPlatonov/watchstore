@@ -13,4 +13,5 @@ public class WatchRepository extends HashMapRepository<Watch> {
     protected void setEntityId(Watch entity, Long id) {
         entity.setId(id);
     }
+
 }

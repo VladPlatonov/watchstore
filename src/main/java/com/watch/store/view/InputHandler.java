@@ -9,4 +9,5 @@ public class InputHandler {
     public String readInput() {
         return scanner.next();
     }
+
 }

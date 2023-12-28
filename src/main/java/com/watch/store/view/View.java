@@ -9,4 +9,5 @@ public class View {
     public void printErrorMessage(String message) {
         System.err.println(message);
     }
+
 }

@@ -10,7 +10,7 @@ import static com.watch.store.util.MessageConstants.ENTER_SOLAR_PANEL;
 
 import com.watch.store.model.Color;
 import com.watch.store.model.Company;
-import com.watch.store.model.validator.WatchValidator;
+import com.watch.store.controller.handler.RetrieveDataHandler;
 import com.watch.store.view.InputHandler;
 import com.watch.store.view.View;
 import java.math.BigDecimal;
@@ -20,16 +20,16 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
- * A utility class responsible for interacting with the user to gather input related to watch
+ * A class responsible for interacting with the user to gather input related to watch
  * properties.
  */
 public class WatchInputController {
 
-    private final WatchValidator validator;
+    private final RetrieveDataHandler validator;
     private final View view;
     private final InputHandler input;
 
-    public WatchInputController(WatchValidator validator, View view, InputHandler input) {
+    public WatchInputController(RetrieveDataHandler validator, View view, InputHandler input) {
         this.validator = validator;
         this.view = view;
         this.input = input;
@@ -68,7 +68,7 @@ public class WatchInputController {
             view.printMessage(ENTER_PRICE);
             priceStr = input.readInput();
         }
-        while (validator.isValidPrice(priceStr).isEmpty());
+        while (validator.RetrievePrice(priceStr).isEmpty());
 
         return BigDecimal.valueOf(Double.parseDouble(priceStr));
     }
@@ -87,7 +87,7 @@ public class WatchInputController {
                     .collect(Collectors.joining(", ", ENTER_COLOR + " (", "): ")));
             color = input.readInput();
         }
-        while (validator.isValidColor(color).isEmpty());
+        while (validator.RetrieveColor(color).isEmpty());
 
         return Color.valueOf(color.toUpperCase());
     }
@@ -106,7 +106,7 @@ public class WatchInputController {
                     .collect(Collectors.joining(", ", ENTER_COMPANY + " (", "): ")));
             company = input.readInput();
         }
-        while (validator.isValidCompany(company).isEmpty());
+        while (validator.RetrieveCompany(company).isEmpty());
 
         return Company.valueOf(company.toUpperCase());
     }
@@ -123,7 +123,7 @@ public class WatchInputController {
             view.printMessage(ENTER_ARRIVAL_DATE);
             valueDate = input.readInput();
         }
-        while (validator.isValidDate(valueDate).isEmpty());
+        while (validator.RetrieveDate(valueDate).isEmpty());
 
         return LocalDate.parse(valueDate, DateTimeFormatter.ofPattern(DATE_FORMAT));
     }

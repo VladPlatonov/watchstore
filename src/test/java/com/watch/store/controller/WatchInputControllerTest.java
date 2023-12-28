@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 
 import com.watch.store.model.Color;
 import com.watch.store.model.Company;
-import com.watch.store.model.validator.WatchValidator;
+import com.watch.store.controller.handler.RetrieveDataHandler;
 import com.watch.store.view.InputHandler;
 import com.watch.store.view.View;
 import java.math.BigDecimal;
@@ -34,7 +34,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class WatchInputControllerTest {
 
     @Mock
-    private WatchValidator validator;
+    private RetrieveDataHandler validator;
     @Mock
     private View view;
     @Mock
@@ -67,7 +67,7 @@ class WatchInputControllerTest {
     @Test
     void shouldReturnPrice_whenGetPriceCalled() {
         when(input.readInput()).thenReturn("500");
-        when(validator.isValidPrice("500")).thenReturn(Optional.of(BigDecimal.valueOf(500)));
+        when(validator.RetrievePrice("500")).thenReturn(Optional.of(BigDecimal.valueOf(500)));
 
         BigDecimal result = controller.getPrice();
 
@@ -79,7 +79,7 @@ class WatchInputControllerTest {
     @Test
     void shouldReturnColor_whenGetColorCalled() {
         when(input.readInput()).thenReturn("BLUE");
-        when(validator.isValidColor("BLUE")).thenReturn(Optional.of(Color.BLUE));
+        when(validator.RetrieveColor("BLUE")).thenReturn(Optional.of(Color.BLUE));
 
         Color result = controller.getColor();
 
@@ -92,7 +92,7 @@ class WatchInputControllerTest {
     @Test
     void shouldReturnCorrectCompany_whenGetCompany() {
         when(input.readInput()).thenReturn("ROLEX");
-        when(validator.isValidCompany("ROLEX")).thenReturn(Optional.of(Company.ROLEX));
+        when(validator.RetrieveCompany("ROLEX")).thenReturn(Optional.of(Company.ROLEX));
 
         Company result = controller.getCompany();
 
@@ -108,7 +108,7 @@ class WatchInputControllerTest {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_FORMAT);
         String dateStr = "2020-10-10";
         when(input.readInput()).thenReturn(dateStr);
-        when(validator.isValidDate(dateStr)).thenReturn(Optional.of(LocalDate.parse(dateStr, dtf)));
+        when(validator.RetrieveDate(dateStr)).thenReturn(Optional.of(LocalDate.parse(dateStr, dtf)));
 
         LocalDate result = controller.getDate();
 

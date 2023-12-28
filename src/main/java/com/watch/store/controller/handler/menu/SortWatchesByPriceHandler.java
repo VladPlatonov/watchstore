@@ -1,4 +1,4 @@
-package com.watch.store.controller.handler;
+package com.watch.store.controller.handler.menu;
 
 import static com.watch.store.util.MessageConstants.MENU_OPTION_SORT_WATCHES_BY_PRICE;
 

@@ -5,7 +5,7 @@ import static com.watch.store.util.MessageConstants.INVALID_INPUT_MENU_OPTION;
 import static com.watch.store.util.MessageConstants.INVALID_INPUT_NUMBER;
 import static com.watch.store.util.MessageConstants.MENU_OPTION_EXIT;
 
-import com.watch.store.controller.handler.MenuHandler;
+import com.watch.store.controller.handler.menu.MenuHandler;
 import com.watch.store.model.Color;
 import com.watch.store.model.MechanicalWatch;
 import com.watch.store.model.QuartzWatch;
@@ -24,7 +24,6 @@ import java.util.stream.Stream;
  * The main class responsible for running the interactive watch store menu, handling user input, and
  * displaying menu choices.
  */
-
 public class MenuController {
 
     private final List<MenuHandler> menuHandlers;
@@ -48,7 +47,6 @@ public class MenuController {
         initData();
         processUserInput();
     }
-
 
     private void processUserInput() {
         Stream.generate(input::readInput)

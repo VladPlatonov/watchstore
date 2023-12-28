@@ -29,4 +29,5 @@ public class SolarWatchFactory implements WatchFactory {
             .arrivalDate(controller.getDate())
             .build();
     }
+
 }
